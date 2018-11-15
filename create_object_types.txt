@@ -1,0 +1,50 @@
+-- Professor Object
+
+CREATE OR REPLACE TYPE DIM_PROFESSOR_OBJ AS OBJECT (
+  id_professor INTEGER,
+  nome VARCHAR2(15)
+);
+/
+
+-- Sala Object
+
+CREATE OR REPLACE TYPE DIM_SALA_OBJ AS OBJECT (
+  id_sala INTEGER,
+  codigo VARCHAR2(8),
+  capacidade INTEGER
+);
+/
+
+-- Disciplina Object
+
+CREATE OR REPLACE TYPE DIM_DISCIPLINA_OBJ AS OBJECT (
+  id_disciplina INTEGER,
+  nome VARCHAR2(60),
+  sigla VARCHAR2(6),
+  area VARCHAR2(6),
+  carga INTEGER,
+  creditos INTEGER
+);
+/
+
+-- Curso Object
+
+CREATE OR REPLACE TYPE DIM_CURSO_OBJ AS OBJECT (
+  id_curso INTEGER, 
+  nome VARCHAR2(45)
+);
+/
+
+-- Alocação Object
+
+CREATE OR REPLACE TYPE FAT_ALOCACAO_OBJ AS OBJECT (
+  ref_disciplina REF DIM_DISCIPLINA_OBJ,
+  ref_professor REF DIM_PROFESSOR_OBJ,
+  ref_curso REF DIM_CURSO_OBJ,
+  ref_sala REF DIM_SALA_OBJ,
+  cod_turma INTEGER,
+  periodo VARCHAR2(6),
+  qtde_alunos INTEGER,
+  media_turma NUMBER(4,2)
+);
+/

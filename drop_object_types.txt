@@ -1,0 +1,19 @@
+-- Alocação Object
+
+DROP TYPE FAT_ALOCACAO_OBJ; 
+
+-- Professor Object
+
+DROP TYPE DIM_PROFESSOR_OBJ;
+
+-- Sala Object
+
+DROP TYPE DIM_SALA_OBJ;
+
+-- Disciplina Object
+
+DROP TYPE DIM_DISCIPLINA_OBJ;
+
+-- Curso Object
+
+DROP TYPE DIM_CURSO_OBJ;

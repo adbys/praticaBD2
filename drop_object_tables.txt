@@ -1,0 +1,19 @@
+-- Professor Table
+
+DROP TABLE DIM_PROFESSOR_TABLE;
+
+-- Sala Table
+
+DROP TABLE DIM_SALA_TABLE;
+
+-- Disciplina Table
+
+DROP TABLE DIM_DISCIPLINA_TABLE;
+
+-- Curso Table
+
+DROP TABLE DIM_CURSO_TABLE;
+
+-- Alocação Table
+
+DROP TABLE FAT_ALOCACAO_TABLE;

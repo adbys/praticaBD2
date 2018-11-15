@@ -1,0 +1,22 @@
+-- Professor Constraints
+
+ALTER TABLE dim_professor_table DROP CONSTRAINT tab--_professor_obj_pk;
+
+-- Sala Constraints
+
+ALTER TABLE dim_sala_table DROP CONSTRAINT tab_sala_obj_pk;
+
+-- Disciplina Constraints
+
+ALTER TABLE dim_disciplina_table DROP CONSTRAINT tab_disciplina_obj_pk;
+
+-- Curso Constraints
+
+ALTER TABLE dim_curso_table DROP CONSTRAINT tab_curso_obj_pk;
+
+-- Alocação Constraints
+
+ALTER TABLE fat_alocacao_table DROP CONSTRAINT disciplina_obj_fk;
+ALTER TABLE fat_alocacao_table DROP CONSTRAINT professor_obj_fk;
+ALTER TABLE fat_alocacao_table DROP CONSTRAINT curso_obj_fk;
+ALTER TABLE fat_alocacao_table DROP CONSTRAINT sala_obj_fk;
