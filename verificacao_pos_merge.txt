@@ -1,0 +1,60 @@
+DECLARE
+  dim_disciplina INTEGER;
+  dim_disciplina_obj INTEGER;
+  dim_curso INTEGER;
+  dim_curso_obj INTEGER;
+  dim_sala INTEGER;
+  dim_sala_obj INTEGER;
+  dim_professor INTEGER;
+  dim_professor_obj INTEGER;
+BEGIN
+  SELECT COUNT(*)
+  INTO dim_disciplina
+  FROM dim_disciplina;
+
+  SELECT COUNT(*)
+  INTO dim_disciplina_obj
+  FROM dim_disciplina_table;
+
+  SELECT COUNT(*)
+  INTO dim_curso
+  FROM dim_curso;
+
+  SELECT COUNT(*)
+  INTO dim_curso_obj
+  FROM dim_curso_table;
+
+  SELECT COUNT(*)
+  INTO dim_sala
+  FROM dim_sala;
+
+  SELECT COUNT(*)
+  INTO dim_sala_obj
+  FROM dim_sala_table;
+  
+  SELECT COUNT(*)
+  INTO dim_professor
+  FROM dim_professor;
+
+  SELECT COUNT(*)
+  INTO dim_professor_obj
+  FROM dim_professor_table;
+
+  DBMS_OUTPUT.PUT_LINE('Verificação Pós Merge');
+
+  DBMS_OUTPUT.PUT_LINE('Disciplina: ' || dim_disciplina);
+  DBMS_OUTPUT.PUT_LINE('Disciplina OBJECT: ' || dim_disciplina_obj);
+
+  
+  DBMS_OUTPUT.PUT_LINE('Curso: ' || dim_curso);
+  DBMS_OUTPUT.PUT_LINE('Curso OBJECT: ' || dim_curso_obj);
+
+  
+  DBMS_OUTPUT.PUT_LINE('Sala: ' || dim_sala);
+  DBMS_OUTPUT.PUT_LINE('Sala OBJECT: ' || dim_sala_obj);
+
+  
+  DBMS_OUTPUT.PUT_LINE('Professor: ' || dim_professor);
+  DBMS_OUTPUT.PUT_LINE('Professor OBJECT: ' || dim_professor_obj);
+
+END;

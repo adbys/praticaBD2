@@ -1,0 +1,52 @@
+-- Merge Professore
+
+MERGE INTO DIM_PROFESSOR_TABLE po
+     USING (SELECT *
+              FROM DIM_PROFESSOR) p
+     ON (po.id_professor = p.id_professor)
+     WHEN NOT MATCHED THEN
+          INSERT
+          VALUES (DIM_PROFESSOR_OBJ(p.id_professor, 
+                                    p.nome));
+
+-- Merge Sala
+
+MERGE INTO DIM_SALA_TABLE so
+     USING (SELECT *
+              FROM DIM_SALA) s
+     ON (so.id_sala = s.id_sala)
+     WHEN NOT MATCHED THEN
+          INSERT
+          VALUES (DIM_SALA_OBJ(s.id_sala, 
+                               s.codigo, 
+                               s.capacidade));
+
+-- Merge Disciplina
+
+MERGE INTO DIM_DISCIPLINA_TABLE do
+     USING (SELECT *
+              FROM DIM_DISCIPLINA) d
+     ON (do.id_disciplina = d.id_disciplina)
+     WHEN NOT MATCHED THEN
+          INSERT
+          VALUES (DIM_DISCIPLINA_OBJ(d.id_disciplina, 
+                                     d.nome,
+                                     d.sigla,
+                                     d.area,
+                                     d.carga,
+                                     d.creditos));
+
+-- Merge Curso
+
+MERGE INTO DIM_CURSO_TABLE co
+     USING (SELECT *
+              FROM DIM_CURSO) c
+     ON (co.id_curso = c.id_curso)
+     WHEN NOT MATCHED THEN
+          INSERT
+          VALUES (DIM_CURSO_OBJ(c.id_curso,
+                                c.nome));
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE("Hello from Script");
+END;
