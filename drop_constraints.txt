@@ -1,6 +1,6 @@
 -- Professor Constraints
 
-ALTER TABLE dim_professor_table DROP CONSTRAINT tab--_professor_obj_pk;
+ALTER TABLE dim_professor_table DROP CONSTRAINT tab_professor_obj_pk;
 
 -- Sala Constraints
 

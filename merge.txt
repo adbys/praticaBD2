@@ -1,4 +1,18 @@
--- Merge Professore
+DECLARE
+
+  CURSOR caloc IS
+  SELECT *
+  FROM FAT_ALOCACAO;
+
+  alocacao caloc%ROWTYPE;
+  obj  FAT_ALOCACAO_OBJ;
+  disciplinaRef REF DIM_DISCIPLINA_OBJ;
+  professorRef REF DIM_PROFESSOR_OBJ;
+  salaRef REF DIM_SALA_OBJ;
+  cursoRef REF DIM_CURSO_OBJ;
+
+BEGIN
+-- Merge Professores
 
 MERGE INTO DIM_PROFESSOR_TABLE po
      USING (SELECT *
@@ -47,6 +61,33 @@ MERGE INTO DIM_CURSO_TABLE co
           VALUES (DIM_CURSO_OBJ(c.id_curso,
                                 c.nome));
 
-BEGIN
-  DBMS_OUTPUT.PUT_LINE("Hello from Script");
+-- Alocacao
+
+  FOR alocacao in caloc
+  LOOP
+    SELECT REF(d)
+    INTO disciplinaRef
+    FROM DIM_DISCIPLINA_TABLE d
+    WHERE ID_DISCIPLINA=ALOCACAO.ID_DISCIPLINA;
+ 
+    SELECT REF(p)
+    INTO professorRef
+    FROM DIM_PROFESSOR_TABLE p
+    WHERE id_professor = alocacao.id_professor;
+
+    SELECT REF(c)
+    INTO cursoRef
+    FROM DIM_CURSO_TABLE c
+    WHERE id_curso = alocacao.id_curso;
+
+    SELECT REF(s)
+    INTO salaRef
+    FROM DIM_SALA_TABLE s
+    WHERE id_sala = alocacao.id_sala;
+    
+    obj := FAT_ALOCACAO_OBJ(disciplinaRef, professorRef, cursoRef, salaRef, alocacao.cod_turma, alocacao.periodo, alocacao.qtde_alunos, alocacao.media_turma);
+
+    INSERT INTO FAT_ALOCACAO_TABLE VALUES (obj);
+  END LOOP;
+
 END;

@@ -7,6 +7,9 @@ DECLARE
   dim_sala_obj INTEGER;
   dim_professor INTEGER;
   dim_professor_obj INTEGER;
+  fat_alocacao INTEGER;
+  fat_alocacao_obj INTEGER;
+
 BEGIN
   SELECT COUNT(*)
   INTO dim_disciplina
@@ -40,21 +43,32 @@ BEGIN
   INTO dim_professor_obj
   FROM dim_professor_table;
 
+  SELECT COUNT(*)
+  INTO fat_alocacao
+  FROM fat_alocacao;
+
+  SELECT COUNT(*)
+  INTO fat_alocacao_obj
+  FROM fat_alocacao_table;
+
+
   DBMS_OUTPUT.PUT_LINE('Verificação Pós Merge');
 
   DBMS_OUTPUT.PUT_LINE('Disciplina: ' || dim_disciplina);
   DBMS_OUTPUT.PUT_LINE('Disciplina OBJECT: ' || dim_disciplina_obj);
-
   
   DBMS_OUTPUT.PUT_LINE('Curso: ' || dim_curso);
   DBMS_OUTPUT.PUT_LINE('Curso OBJECT: ' || dim_curso_obj);
 
-  
   DBMS_OUTPUT.PUT_LINE('Sala: ' || dim_sala);
   DBMS_OUTPUT.PUT_LINE('Sala OBJECT: ' || dim_sala_obj);
-
   
   DBMS_OUTPUT.PUT_LINE('Professor: ' || dim_professor);
   DBMS_OUTPUT.PUT_LINE('Professor OBJECT: ' || dim_professor_obj);
+
+  DBMS_OUTPUT.PUT_LINE('Alocacao: ' || fat_alocacao);
+  DBMS_OUTPUT.PUT_LINE('Alocacao OBJECT: ' || fat_alocacao_obj);
+
+
 
 END;
