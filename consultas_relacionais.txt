@@ -30,12 +30,23 @@ WHERE ROWNUM <= 5
 -- 1 d
 
 
-SELECT prof.nome
-FROM dim_professor prof
-WHERE prof.nome IN (SELECT DISTINCT dp.nome
-                        FROM fat_alocacao fat, dim_curso dcur, dim_professor dp
-                        WHERE fat.id_curso = dcur.id_curso AND fat.id_professor = dp.id_professor AND dcur.id_curso = 2)
-ORDER BY prof.nome ASC;
+SELECT DISTINCT dp.nome
+FROM fat_alocacao fat, dim_curso dcur, dim_professor dp
+WHERE fat.id_curso = dcur.id_curso 
+      AND fat.id_professor = dp.id_professor 
+      AND dcur.id_curso = 2 
+      AND dp.id_professor IN (
+            SELECT DISTINCT dp.id_professor
+            FROM fat_alocacao fat, dim_curso dcur, dim_professor dp
+            WHERE fat.id_curso = dcur.id_curso AND fat.id_professor = dp.id_professor AND dcur.id_curso = 1
+         )
+ORDER BY dp.nome ASC;
+
+
+
+
+
+
 
 1 - e
 
