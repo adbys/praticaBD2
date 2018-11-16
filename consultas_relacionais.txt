@@ -8,14 +8,12 @@ ORDER BY COUNT(DISTINCT(fat.id_professor)) DESC, dd.nome;
 
 -- 1 b
 
-
 SELECT prof.nome
 FROM dim_professor prof
 WHERE prof.nome NOT IN (SELECT DISTINCT dp.nome
                         FROM fat_alocacao fat, dim_curso dcur, dim_professor dp
                         WHERE fat.id_curso = dcur.id_curso AND fat.id_professor = dp.id_professor AND dcur.id_curso = 2)
 ORDER BY prof.nome ASC;
-
 
 -- 1 c
 
@@ -29,7 +27,6 @@ WHERE ROWNUM <= 5
 
 -- 1 d
 
-
 SELECT DISTINCT dp.nome
 FROM fat_alocacao fat, dim_curso dcur, dim_professor dp
 WHERE fat.id_curso = dcur.id_curso 
@@ -42,14 +39,7 @@ WHERE fat.id_curso = dcur.id_curso
          )
 ORDER BY dp.nome ASC;
 
-
-
-
-
-
-
-1 - e
-
+-- 1  e
 
 SELECT *
 FROM (
@@ -70,7 +60,6 @@ FROM (
    GROUP BY dd.nome
    ORDER BY COUNT(fat.cod_turma) DESC)
 WHERE ROWNUM <= 5
-
 
 -- 1 g
 
