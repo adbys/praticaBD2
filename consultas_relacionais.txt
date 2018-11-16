@@ -23,7 +23,7 @@ SELECT * FROM (
   WHERE dd.id_disciplina = fat.id_disciplina AND dp.id_professor = fat.id_professor 
   GROUP BY dp.nome 
   ORDER BY (AVG(dd.carga)) DESC )
-WHERE ROWNUM <= 5
+WHERE ROWNUM <= 5;
 
 -- 1 d
 
@@ -48,7 +48,7 @@ FROM (
    WHERE ds.id_sala = fat.id_sala 
    GROUP BY ds.codigo
    ORDER BY COUNT(ds.id_sala) DESC)
-WHERE ROWNUM <= 5
+WHERE ROWNUM <= 5;
 
 -- 1 f
 
@@ -59,7 +59,7 @@ FROM (
    WHERE dd.id_disciplina = fat.id_disciplina
    GROUP BY dd.nome
    ORDER BY COUNT(fat.cod_turma) DESC)
-WHERE ROWNUM <= 5
+WHERE ROWNUM <= 5;
 
 -- 1 g
 
@@ -70,4 +70,4 @@ FROM (
    WHERE dp.id_professor = fat.id_professor AND dd.id_disciplina = fat.id_disciplina
    GROUP BY dp.nome
    ORDER BY COUNT(DISTINCT(fat.id_disciplina)) DESC, dp.nome)
-WHERE ROWNUM <= 5
+WHERE ROWNUM <= 5;
