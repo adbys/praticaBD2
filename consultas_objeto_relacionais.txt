@@ -1,0 +1,72 @@
+-- 1 a
+
+SELECT f.ref_disciplina.nome as "NOME", COUNT(DISTINCT(f.ref_professor.nome)) as "QTD_PROF"
+FROM FAT_ALOCACAO_TABLE f
+GROUP BY f.ref_disciplina.nome
+ORDER BY COUNT(DISTINCT(f.ref_professor.nome)) DESC, f.ref_disciplina.nome ASC;
+
+-- 1 b
+
+SELECT DISTINCT f.ref_professor.nome
+FROM FAT_ALOCACAO_TABLE f
+WHERE f.ref_professor.nome NOT IN (SELECT DISTINCT f.ref_professor.nome
+                                  FROM FAT_ALOCACAO_TABLE f
+                                  WHERE f.ref_curso.id_curso = 2
+                                  )
+ORDER BY f.ref_professor.nome ASC;
+
+
+-- 1 c
+
+SELECT * FROM (
+  SELECT f.ref_professor.nome, AVG(f.ref_disciplina.carga) as "media_ch"
+  FROM fat_alocacao_table f
+  GROUP BY f.ref_professor.nome 
+  ORDER BY (AVG(f.ref_disciplina.carga)) DESC )
+WHERE ROWNUM <= 5;
+
+
+-- 1 d
+
+SELECT DISTINCT f.ref_professor.nome
+FROM fat_alocacao_table f
+WHERE  f.ref_curso.id_curso = 2 
+      AND f.ref_professor.id_professor IN (
+            SELECT DISTINCT fat.ref_professor.id_professor
+            FROM fat_alocacao_table fat
+            WHERE fat.ref_curso.id_curso = 1
+         )
+ORDER BY f.ref_professor.nome ASC;
+
+
+-- 1  e
+
+SELECT *
+FROM (
+   SELECT fat.ref_sala.codigo, COUNT(fat.ref_sala.id_sala) as "COUNT_SALA"
+   FROM fat_alocacao_table fat
+   GROUP BY fat.ref_sala.codigo
+   ORDER BY COUNT(fat.ref_sala.id_sala) DESC)
+WHERE ROWNUM <= 5;
+
+
+-- 1 f
+
+SELECT *
+FROM (
+   SELECT fat.ref_disciplina.nome, COUNT(fat.cod_turma) as "QTD_TURMAS"
+   FROM fat_alocacao_table fat
+   GROUP BY fat.ref_disciplina.nome
+   ORDER BY COUNT(fat.cod_turma) DESC)
+WHERE ROWNUM <= 5;
+
+-- 1 g
+
+SELECT *
+FROM (
+   SELECT fat.ref_professor.nome, COUNT(DISTINCT(fat.ref_disciplina.id_disciplina)) as "DISC_PROF"
+   FROM dim_Professor dp, fat_alocacao_table fat, dim_disciplina dd
+   GROUP BY fat.ref_professor.nome
+   ORDER BY COUNT(DISTINCT(fat.ref_disciplina.id_disciplina)) DESC, fat.ref_professor.nome)
+WHERE ROWNUM <= 5;
+
