@@ -1,0 +1,40 @@
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_DISCIPLINA';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_DISCIPLINA_TABLE';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_PROFESSOR';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_PROFESSOR_TABLE';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_CURSO';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_CURSO_TABLE';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_SALA';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'DIM_SALA_TABLE';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'FAT_ALOCACAO';
+
+SELECT segment_name, bytes/1024/1024 AS espaco
+FROM user_extents
+WHERE segment_name = 'FAT_ALOCACAO_TABLE';
+
